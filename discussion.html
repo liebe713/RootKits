@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="discussion.css">
+
+</head>
+<body>
+
+<header>
+      <nav class="site-nav">
+        <div class="logo">
+          <i class="fas fa-bug"></i>
+          <span><img src="icon.png" width="50px" height="50px" alt="">Rootkit</span>
+        </div>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <ul class="nav-list">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/discussion.html" class="active">Discussion</a></li>
+          <li><a href="/article.html">Articles</a></li>
+          <li><a href="/reflection.html">Reflection</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </nav>
+</header>
+
+      <section id="discussion" class="section hero">
+        <img src="what-is-a-rootkit.jpg" alt="Hacker silhouette with code overlay" class="hero-img">
+        <div class="hero-content">
+          <h1>Discussion</h1>
+          <p>Rootkits have evolved from simple user-mode utilities in the 1980s to sophisticated kernel-level and firmware-based implants that challenge even the most advanced security measures. Originally limited to manipulating basic user-level applications, modern rootkits now operate at deeper levels of a system, including the kernel, hypervisor, and even UEFI firmware making detection and removal significantly harder. These advanced threats can bypass antivirus programs, survive OS reinstalls, and remain hidden from traditional monitoring tools. As attackers gain the ability to subvert bootloaders, tamper with kernel modules, or infect firmware directly, organizations must rethink their security posture. This includes implementing hardware-based protections like Secure Boot, utilizing behavioral analytics, employing kernel integrity monitoring, and adopting a zero-trust architecture. In a landscape where persistence and stealth are prioritized by threat actors, the challenge is not only identifying rootkits but preventing their foothold altogether.</em></p>
+        </div>
+      </section>
+
+    <main>
+
+        <!-- User-Mode Rootkits -->
+        <section class="discussion-body">
+          <div class="text-side">
+            <h2>User-Mode Rootkits</h2>
+            <p>User-mode rootkits hook into application-level APIs or libraries to intercept calls and hide malicious behavior. They are easier to develop but less powerful than kernel-mode kits.</p>
+            <ul>
+              <li><strong>Injection points:</strong> DLLs, shared libraries, and application processes.</li>
+              <li><strong>Techniques:</strong> API hooking, function overwriting, in-memory patching.</li>
+              <li><strong>Advantages:</strong> Lower complexity, no kernel exploits required.</li>
+              <li><strong>Limitations:</strong> Bound by user privileges; can be detected by integrity checks.</li>
+            </ul>
+          </div>
+          <div class="image-side">
+            <img src="user-mode.jpg" alt="Diagram of user-mode rootkit hooking">
+          </div>
+        </section>
+  
+        <!-- Kernel-Mode Rootkits -->
+        <section class="discussion-body">
+          <div class="image-side">
+            <img src="kernel-mode.jpg" alt="Kernel-mode rootkit architecture">
+          </div>
+          <div class="text-side">
+            <h2>Kernel-Mode Rootkits</h2>
+            <p>Kernel-mode rootkits operate with the highest privileges, modifying the kernel itself or its modules to conceal their presence. They are harder to detect and remove but also more complex to build.</p>
+            <ul>
+              <li><strong>Installation:</strong> Via vulnerable drivers, bootkit chains, or kernel exploits.</li>
+              <li><strong>Techniques:</strong> System call table hooking, inline kernel patching, rootkit modules.</li>
+              <li><strong>Advantages:</strong> Deep concealment, can hide processes and network activity.</li>
+              <li><strong>Challenges:</strong> Kernel updates can break functionality; requires low-level expertise.</li>
+            </ul>
+          </div>
+        </section>
+  
+    </main>
+</body>
+</html>

@@ -1,0 +1,274 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* ─── RESET & BASE ────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+}
+
+/* ─── NAVIGATION ─────────────────────────────────────────────────────────── */
+
+.site-nav {
+  display: flex;
+  justify-content: space-between;  /* logo on left, links on right */
+  align-items: center;
+  padding: 10px 2rem;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0,255,255,0.4);
+  z-index: 1000;
+}
+
+/* 2) Logo styling */
+.site-nav .logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ffff;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+.site-nav .logo i {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.6rem;
+  margin-right: 0.3rem;
+}
+
+.site-nav .logo span {
+  display: flex;
+  align-items: center;     /* vertically center text + image */
+  gap: 0.4rem;             /* space between image and text */
+}
+
+.site-nav .logo span img {
+  display: block;          /* remove any inline descender white-space */
+  width: 32px;             /* pick a size that matches your font-size */
+  height: auto;            /* preserve aspect ratio */
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;                      /* only shown on mobile */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.nav-toggle-label span {
+  display: block;
+  height: 3px;
+  background: #00ffff;                /* azure hamburger bars */
+  border-radius: 2px;
+  transition: transform 0.3s ease,
+              opacity   0.3s ease;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  margin: 0 15px;
+}
+
+.nav-list a {
+  font-family: 'Share Tech Mono', monospace;
+  display: block;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.6);        /* dark pill behind link */
+  color: #00ffff;                     /* azure text */
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.3s ease,
+              color      0.3s ease;
+  letter-spacing: 1.5px;           
+}
+
+.nav-list a:hover {
+  background: #00ffff;                /* fill with azure */
+  color: #000;                        /* black text on hover */
+}
+
+.nav-list a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00ffff;
+}
+
+/* ─── MOBILE ▼768px ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-toggle-label {
+    display: flex;
+  }
+  .nav-list {
+    position: absolute;
+    top: 58px; left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(0,0,0,0.95);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-toggle:checked + .nav-toggle-label + .nav-list {
+    max-height: 300px;
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+  .nav-list li {
+    margin: 8px 0;
+    text-align: center;
+  }
+  .nav-list a {
+    width: 100%;
+  }
+}
+
+/* ─── HERO SECTION ───────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  margin-top: 25px;                   /* account for fixed nav height */
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: contrast(1.2) brightness(0.8);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.9));
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  top: 40%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 2;
+}
+
+@keyframes glitch {
+  0%, 100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50%      { text-shadow:-2px 0 red,  2px 0 cyan; }
+}
+
+.hero-content h1 {
+  font-size: 3.5em;
+  font-family: 'Share Tech Mono', monospace;
+  animation: glitch 1.5s infinite;
+  letter-spacing: 2px;
+  color: #ff003c;
+  margin-bottom: 5%;
+}
+
+.hero-content p {
+  font-size: 1.3em;
+  font-family: 'Share Tech Mono', monospace;
+  color: #00ffff;
+  text-shadow: 1px 1px 3px #000;
+  margin-top: 15px;
+}
+
+
+/* DISCUSSION BODY - TWO COLUMNS */
+.discussion-body {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.text-side {
+  flex: 1;
+}
+
+.text-side h2 {
+  font-size: 2em; margin-bottom: 0.5rem; color: #ff003c;
+}
+
+.text-side h3 {
+  margin-top: 1.5rem; font-size: 1.4em; color: #00ffff;
+}
+
+.text-side ol,
+.text-side ul {
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.text-side li {
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+.image-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.image-side img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,255,255,0.3);
+}
+
+/* RESPONSIVE TWO-COLUMN STACK */
+@media (max-width: 900px) {
+  .discussion-body {
+    flex-direction: column;
+  }
+  .image-side {
+    margin-top: 2rem;
+  }
+}
